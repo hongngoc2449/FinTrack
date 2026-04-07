@@ -7,28 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Transaction extends Model
+class SavingGoal extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'wallet_id',
-        'category_id',
-        'title',
-        'amount',
-        'type',
-        'category',
-        'transaction_date',
-        'note',
-        'source',
+        'name',
+        'target_amount',
+        'current_amount',
+        'target_date',
         'status',
-        'external_ref',
+        'note',
     ];
 
     protected $casts = [
-        'amount' => 'decimal:2',
-        'transaction_date' => 'date',
+        'target_amount' => 'decimal:2',
+        'current_amount' => 'decimal:2',
+        'target_date' => 'date',
     ];
 
     public function user(): BelongsTo
@@ -39,11 +36,6 @@ class Transaction extends Model
     public function wallet(): BelongsTo
     {
         return $this->belongsTo(Wallet::class);
-    }
-
-    public function categoryRelation(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function goalContributions(): HasMany

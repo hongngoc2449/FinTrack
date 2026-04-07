@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Transaction extends Model
+class RecurringTransaction extends Model
 {
     use HasFactory;
 
@@ -18,17 +17,20 @@ class Transaction extends Model
         'title',
         'amount',
         'type',
-        'category',
-        'transaction_date',
+        'interval',
+        'interval_value',
+        'next_run_date',
+        'end_date',
+        'is_active',
         'note',
-        'source',
-        'status',
-        'external_ref',
     ];
 
     protected $casts = [
         'amount' => 'decimal:2',
-        'transaction_date' => 'date',
+        'interval_value' => 'integer',
+        'next_run_date' => 'date',
+        'end_date' => 'date',
+        'is_active' => 'boolean',
     ];
 
     public function user(): BelongsTo
@@ -44,10 +46,5 @@ class Transaction extends Model
     public function categoryRelation(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    public function goalContributions(): HasMany
-    {
-        return $this->hasMany(GoalContribution::class);
     }
 }

@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Transaction extends Model
+class Budget extends Model
 {
     use HasFactory;
 
@@ -15,20 +14,20 @@ class Transaction extends Model
         'user_id',
         'wallet_id',
         'category_id',
-        'title',
-        'amount',
-        'type',
-        'category',
-        'transaction_date',
+        'month',
+        'year',
+        'amount_limit',
+        'alert_threshold',
+        'rollover',
         'note',
-        'source',
-        'status',
-        'external_ref',
     ];
 
     protected $casts = [
-        'amount' => 'decimal:2',
-        'transaction_date' => 'date',
+        'month' => 'integer',
+        'year' => 'integer',
+        'amount_limit' => 'decimal:2',
+        'alert_threshold' => 'integer',
+        'rollover' => 'boolean',
     ];
 
     public function user(): BelongsTo
@@ -44,10 +43,5 @@ class Transaction extends Model
     public function categoryRelation(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    public function goalContributions(): HasMany
-    {
-        return $this->hasMany(GoalContribution::class);
     }
 }
