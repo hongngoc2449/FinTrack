@@ -15,6 +15,14 @@ Current repository status:
 - Frontend is runnable and includes marketing pages, login, dashboard, and transaction ledger.
 - Backend currently contains API/domain scaffold (models, routes, migrations) and database schema design.
 
+## Team Members
+
+| Name | Student ID | Role |
+|------|------------|------|
+| Le Tiep Tuyen | 22020015 | Team Lead & Developer |
+| Mai Thieu Tin | 22020003 | Developer |
+| Doan Hong Ngoc | 22020010 | Developer |
+
 ## Core Features
 
 ### Implemented in frontend
@@ -117,6 +125,8 @@ Next step to run backend in production mode:
 - Integrate this scaffold into a full Laravel application bootstrap and run migrations.
 
 ## Database Schema Modules
+
+![FinTrack Database Schema](Fintrack-database-schema-design.png)
 
 Defined in `backend/database/SCHEMA.md` and migration files:
 
