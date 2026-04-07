@@ -2,22 +2,22 @@
   <section class="dashboard-page">
     <div class="kpi-grid">
       <article class="metric-card">
-        <p class="metric-label">Tong so du</p>
+        <p class="metric-label">Total Balance</p>
         <h3>{{ formatCurrency(store.balance) }}</h3>
       </article>
 
       <article class="metric-card">
-        <p class="metric-label">Tong thu</p>
+        <p class="metric-label">Total Income</p>
         <h3 class="income-text">{{ formatCurrency(store.incomeTotal) }}</h3>
       </article>
 
       <article class="metric-card">
-        <p class="metric-label">Tong chi</p>
+        <p class="metric-label">Total Expenses</p>
         <h3 class="expense-text">{{ formatCurrency(store.expenseTotal) }}</h3>
       </article>
 
       <article class="metric-card plan-card">
-        <p class="metric-label">Ke hoach thang nay</p>
+        <p class="metric-label">Monthly Plan</p>
         <h3>{{ spentRatio }}%</h3>
         <div class="progress-track">
           <span :style="{ width: `${spentRatio}%` }"></span>
@@ -28,10 +28,10 @@
     <div class="dashboard-main-grid">
       <article class="panel-card analysis-panel">
         <header class="panel-header">
-          <h3>Phan tich thu chi</h3>
+          <h3>Cash Flow Analysis</h3>
           <div class="panel-tabs">
-            <button type="button" class="active">Tuan</button>
-            <button type="button" disabled>Thang</button>
+            <button type="button" class="active">Week</button>
+            <button type="button" disabled>Month</button>
           </div>
         </header>
 
@@ -48,9 +48,9 @@
 
       <article class="panel-card recent-panel">
         <header class="panel-header">
-          <h3>Giao dich gan day</h3>
+          <h3>Recent Transactions</h3>
         </header>
-        <p v-if="store.loading" class="empty-state">Dang tai du lieu...</p>
+        <p v-if="store.loading" class="empty-state">Loading data...</p>
         <ul v-else-if="latestTransactions.length" class="recent-list">
           <li v-for="item in latestTransactions" :key="item.id">
             <div>
@@ -62,7 +62,7 @@
             </b>
           </li>
         </ul>
-        <p v-else class="empty-state">Chua co giao dich nao.</p>
+        <p v-else class="empty-state">No transactions yet.</p>
       </article>
     </div>
   </section>
@@ -77,7 +77,7 @@ const store = useFinanceStore();
 const latestTransactions = computed(() => store.transactions.slice(0, 5));
 
 const weeklyData = computed(() => {
-  const days = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const base = days.map((day) => ({ day, income: 0, expense: 0 }));
 
   store.transactions.slice(0, 20).forEach((item) => {
@@ -115,17 +115,17 @@ const spentRatio = computed(() => {
 });
 
 const formatCurrency = (value) =>
-  new Intl.NumberFormat('vi-VN', {
+  new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'VND',
+    currency: 'USD',
   }).format(Number(value || 0));
 
 const formatDate = (value) => {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
-    return 'Khong ro ngay';
+    return 'Unknown date';
   }
-  return new Intl.DateTimeFormat('vi-VN', {
+  return new Intl.DateTimeFormat('en-US', {
     day: '2-digit',
     month: '2-digit',
   }).format(date);

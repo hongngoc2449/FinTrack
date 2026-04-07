@@ -35,13 +35,13 @@ const routes = [
     path: '/app',
     name: 'dashboard',
     component: DashboardView,
-    meta: { layout: 'app', title: 'Bang dieu khien' },
+    meta: { layout: 'app', title: 'Dashboard' },
   },
   {
     path: '/app/transactions',
     name: 'transactions',
     component: TransactionsView,
-    meta: { layout: 'app', title: 'So giao dich' },
+    meta: { layout: 'app', title: 'Transaction Ledger' },
   },
   {
     path: '/:pathMatch(.*)*',

@@ -2,20 +2,20 @@
   <section class="transactions-page">
     <header class="transaction-head-row">
       <div>
-        <h3>So giao dich</h3>
-        <p>Theo doi dong tien thu va chi theo tung ngay.</p>
+        <h3>Transaction Ledger</h3>
+        <p>Track incoming and outgoing cash every day.</p>
       </div>
       <div class="head-actions">
-        <button type="button" class="ghost-btn" disabled>Xuat Excel</button>
+        <button type="button" class="ghost-btn" disabled>Export Excel</button>
       </div>
     </header>
 
     <div class="transaction-filters">
-      <input v-model="keyword" type="text" placeholder="Tim theo ghi chu, danh muc..." />
+      <input v-model="keyword" type="text" placeholder="Search by note or category..." />
       <select v-model="typeFilter">
-        <option value="all">Tat ca loai</option>
-        <option value="income">Thu</option>
-        <option value="expense">Chi</option>
+        <option value="all">All types</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
       </select>
     </div>
 
@@ -24,41 +24,41 @@
         <table class="ledger-table">
           <thead>
             <tr>
-              <th>Ngay</th>
-              <th>Danh muc</th>
-              <th>Ghi chu</th>
-              <th>Loai</th>
-              <th class="amount-cell">So tien</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Note</th>
+              <th>Type</th>
+              <th class="amount-cell">Amount</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in filteredTransactions" :key="item.id">
               <td>{{ formatDate(item.transaction_date) }}</td>
-              <td>{{ item.category || 'Khac' }}</td>
+              <td>{{ item.category || 'Other' }}</td>
               <td>{{ item.note || item.title }}</td>
-              <td>{{ item.type === 'income' ? 'Thu' : 'Chi' }}</td>
+              <td>{{ item.type === 'income' ? 'Income' : 'Expense' }}</td>
               <td class="amount-cell" :class="item.type === 'income' ? 'income-text' : 'expense-text'">
                 {{ item.type === 'income' ? '+' : '-' }}{{ formatCurrency(item.amount) }}
               </td>
             </tr>
           </tbody>
         </table>
-        <p v-if="!filteredTransactions.length" class="empty-state">Khong co giao dich phu hop bo loc.</p>
+        <p v-if="!filteredTransactions.length" class="empty-state">No transactions match your filters.</p>
       </article>
 
       <aside class="panel-card add-form-card">
-        <h4>Them giao dich</h4>
+        <h4>Add Transaction</h4>
         <form class="transaction-form" @submit.prevent="submitForm">
-          <input v-model="form.title" required placeholder="Tieu de" />
-          <input v-model.number="form.amount" required type="number" min="0" placeholder="So tien" />
+          <input v-model="form.title" required placeholder="Title" />
+          <input v-model.number="form.amount" required type="number" min="0" placeholder="Amount" />
           <select v-model="form.type" required>
-            <option value="expense">Chi tieu</option>
-            <option value="income">Thu nhap</option>
+            <option value="expense">Spending</option>
+            <option value="income">Income</option>
           </select>
-          <input v-model="form.category" placeholder="Danh muc" />
+          <input v-model="form.category" placeholder="Category" />
           <input v-model="form.transaction_date" required type="date" />
-          <textarea v-model="form.note" rows="3" placeholder="Ghi chu"></textarea>
-          <button type="submit">Luu giao dich</button>
+          <textarea v-model="form.note" rows="3" placeholder="Note"></textarea>
+          <button type="submit">Save Transaction</button>
         </form>
       </aside>
     </div>
@@ -96,9 +96,9 @@ const filteredTransactions = computed(() =>
 );
 
 const formatCurrency = (value) =>
-  new Intl.NumberFormat('vi-VN', {
+  new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'VND',
+    currency: 'USD',
   }).format(Number(value || 0));
 
 const formatDate = (value) => {
@@ -106,7 +106,7 @@ const formatDate = (value) => {
   if (Number.isNaN(date.getTime())) {
     return '--';
   }
-  return new Intl.DateTimeFormat('vi-VN', {
+  return new Intl.DateTimeFormat('en-US', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',

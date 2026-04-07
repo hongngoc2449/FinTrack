@@ -1,53 +1,89 @@
-# FinTrack
+# FinTrack - Personal Finance Management Platform
 
-A starter project structure for a personal finance management app using:
-- Laravel (API backend)
-- Vue 3 + Vite (frontend)
+A full-stack finance management project built with Vue 3 + Vite (frontend) and Laravel-style backend architecture.
+
+![Vue](https://img.shields.io/badge/vue-3.5.20-42b883.svg)
+![Vite](https://img.shields.io/badge/vite-5.4.x-646cff.svg)
+![Laravel](https://img.shields.io/badge/laravel-schema%20scaffold-red.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+## Overview
+
+FinTrack helps users track income and expenses, monitor balances, plan budgets, and manage saving goals.
+
+Current repository status:
+- Frontend is runnable and includes marketing pages, login, dashboard, and transaction ledger.
+- Backend currently contains API/domain scaffold (models, routes, migrations) and database schema design.
+
+## Core Features
+
+### Implemented in frontend
+- Multi-layout website (marketing, auth, app workspace)
+- Login screen with simple local validation flow
+- Dashboard with balance/income/expense cards
+- Weekly cash-flow visualization
+- Transaction ledger with filters and quick add form
+- Blog and feature pages for product presentation
+
+### Implemented in backend scaffold
+- Transaction CRUD controller scaffold
+- Domain models for core finance modules
+- Extended schema for users, wallets, categories, budgets, saving goals, and recurring transactions
+
+## Technology Stack
+
+- Frontend: Vue 3, Vue Router, Pinia, Axios, Vite
+- Backend architecture: Laravel-style folders, Eloquent models, migrations, API route scaffold
+- Database target: MySQL-compatible relational schema
 
 ## Project Structure
 
 ```
 HCI-FinTrack/
-|-- backend/                # Laravel API
+|-- backend/
 |   |-- app/
 |   |   |-- Http/Controllers/Api/TransactionController.php
-|   |   `-- Models/Transaction.php
-|   |-- database/migrations/2026_04_07_000000_create_transactions_table.php
+|   |   `-- Models/
+|   |       |-- User.php
+|   |       |-- Wallet.php
+|   |       |-- Category.php
+|   |       |-- Transaction.php
+|   |       |-- Budget.php
+|   |       |-- SavingGoal.php
+|   |       |-- GoalContribution.php
+|   |       `-- RecurringTransaction.php
+|   |-- database/
+|   |   |-- migrations/
+|   |   `-- SCHEMA.md
 |   |-- routes/api.php
 |   |-- composer.json
 |   `-- .env.example
-|-- frontend/               # Vue app (Vite)
+|-- frontend/
+|   |-- public/references/
 |   |-- src/
 |   |   |-- assets/base.css
 |   |   |-- router/index.js
 |   |   |-- services/api.js
 |   |   |-- stores/financeStore.js
-|   |   |-- views/DashboardView.vue
-|   |   |-- views/TransactionsView.vue
-|   |   |-- App.vue
-|   |   `-- main.js
-|   |-- index.html
+|   |   `-- views/
+|   |       |-- HomeView.vue
+|   |       |-- FeaturesView.vue
+|   |       |-- BlogView.vue
+|   |       |-- LoginView.vue
+|   |       |-- DashboardView.vue
+|   |       `-- TransactionsView.vue
 |   |-- package.json
-|   |-- vite.config.js
-|   `-- .env.example
+|   `-- vite.config.js
+|-- .gitignore
 `-- README.md
 ```
 
-## How To Use This Scaffold
+## Frontend Quick Start
 
-### Backend (Laravel API)
+### Prerequisites
+- Node.js 20+
 
-The `backend` folder currently provides architecture scaffold files:
-- API route definition
-- Transaction model
-- Transaction controller
-- Initial migration
-
-To run a full Laravel app, initialize a standard Laravel project and then merge these scaffold files into it.
-
-### Frontend (Vue)
-
-Requirements: Node.js 20+
+### Install and run
 
 ```bash
 cd frontend
@@ -55,16 +91,67 @@ npm install
 npm run dev
 ```
 
-Frontend runs by default at: `http://localhost:5173`
+App URLs:
+- Marketing pages: `http://localhost:5173/`
+- Login: `http://localhost:5173/login`
+- Dashboard: `http://localhost:5173/app`
+- Transactions: `http://localhost:5173/app/transactions`
 
-## Current Scope
+### Build
 
-- Transaction API scaffold (CRUD endpoints)
-- Vue pages for Dashboard and Transactions
-- Pinia store and Axios service for API integration
+```bash
+cd frontend
+npm run build
+```
 
-## Next Suggested Steps
+## Backend Status and Notes
 
-1. Add authentication (Laravel Sanctum + login UI).
-2. Add categories and monthly budgeting tables.
-3. Add charts for spending trends on dashboard.
+The backend directory is currently a schema/API scaffold, not a full Laravel runtime bootstrap.
+
+What is included:
+- Eloquent-style models for core finance modules
+- Migration files for full finance schema
+- Transaction API controller scaffold
+
+Next step to run backend in production mode:
+- Integrate this scaffold into a full Laravel application bootstrap and run migrations.
+
+## Database Schema Modules
+
+Defined in `backend/database/SCHEMA.md` and migration files:
+
+- users
+- wallets
+- categories
+- transactions
+- budgets
+- saving_goals
+- goal_contributions
+- recurring_transactions
+
+Schema highlights:
+- Transaction table supports legacy `category` text plus normalized `category_id`
+- Support for manual/import/recurring transaction sources
+- Budget and savings goal planning is modeled for monthly and long-term tracking
+
+## API Scaffold (Current)
+
+Currently defined endpoint group:
+- `GET /api/transactions`
+- `POST /api/transactions`
+- `GET /api/transactions/{id}`
+- `PUT /api/transactions/{id}`
+- `DELETE /api/transactions/{id}`
+
+## Roadmap
+
+1. Convert backend scaffold into full Laravel runtime project
+2. Add authentication (Sanctum/JWT)
+3. Add controllers/resources for wallets, categories, budgets, saving goals
+4. Add recurring transaction scheduler
+5. Add reporting APIs and chart endpoints
+6. Add test suites for frontend and backend
+
+## License
+
+MIT License

@@ -2,27 +2,27 @@
   <section class="home-page">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="hero-badge">Tich hop AI thong minh</span>
+        <span class="hero-badge">AI-powered insights</span>
         <h1>
-          Quan ly tai chinh
-          <span>chua bao gio de the</span>
+          Money management
+          <span>made effortless</span>
         </h1>
         <p>
-          Theo doi thu chi, lap ngan sach va nhan goi y tai chinh theo thoi gian thuc trong
-          mot ung dung duy nhat.
+          Track income and expenses, build budgets, and get real-time financial suggestions
+          in one app.
         </p>
         <div class="hero-actions">
-          <RouterLink to="/login" class="cta-link">Bat dau mien phi</RouterLink>
-          <button type="button" class="watch-btn">Xem video</button>
+          <RouterLink to="/login" class="cta-link">Start for free</RouterLink>
+          <button type="button" class="watch-btn">Watch video</button>
         </div>
         <div class="hero-stats">
           <div>
             <strong>50K+</strong>
-            <small>Nguoi dung</small>
+            <small>Users</small>
           </div>
           <div>
             <strong>4.8/5</strong>
-            <small>Danh gia</small>
+            <small>Rating</small>
           </div>
         </div>
       </div>
@@ -34,16 +34,16 @@
 
     <div class="feature-card-grid">
       <article class="feature-card">
-        <h3>Bao cao truc quan</h3>
-        <p>Bieu do dong tien theo ngay, tuan va thang voi thao tac don gian.</p>
+        <h3>Visual Reports</h3>
+        <p>Understand your cash flow with clear daily, weekly, and monthly charts.</p>
       </article>
       <article class="feature-card">
-        <h3>Tro ly AI</h3>
-        <p>Phan tich hanh vi chi tieu va de xuat cach can doi ngan sach.</p>
+        <h3>AI Assistant</h3>
+        <p>Analyze spending behavior and get practical budget-balancing suggestions.</p>
       </article>
       <article class="feature-card">
-        <h3>Muc tieu tiet kiem</h3>
-        <p>Dat muc tieu mua sam, du lich va theo doi tien do theo ngay.</p>
+        <h3>Savings Goals</h3>
+        <p>Set goals for shopping or travel and track progress every day.</p>
       </article>
     </div>
   </section>

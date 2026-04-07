@@ -3,20 +3,20 @@
     <aside class="sidebar">
       <div class="brand">
         <h1>FinTrack</h1>
-        <p>Quan ly tai chinh thong minh</p>
+        <p>Smart finance management</p>
       </div>
 
       <nav class="sidebar-nav">
-        <RouterLink to="/app">Tong quan</RouterLink>
-        <RouterLink to="/app/transactions">Giao dich</RouterLink>
-        <a href="#" class="disabled-link" @click.prevent>Ngan sach</a>
-        <a href="#" class="disabled-link" @click.prevent>Tro ly AI</a>
+        <RouterLink to="/app">Overview</RouterLink>
+        <RouterLink to="/app/transactions">Transactions</RouterLink>
+        <a href="#" class="disabled-link" @click.prevent>Budgets</a>
+        <a href="#" class="disabled-link" @click.prevent>AI Assistant</a>
       </nav>
 
       <div class="premium-card">
         <h3>FinTrack Premium</h3>
-        <p>Mo khoa bao cao nang cao va du doan dong tien theo thoi gian thuc.</p>
-        <button type="button">Nang cap ngay</button>
+        <p>Unlock advanced reports and real-time cash flow forecasting.</p>
+        <button type="button">Upgrade now</button>
       </div>
     </aside>
 
@@ -30,9 +30,9 @@
         <div class="top-actions">
           <label class="search-box">
             <span>⌕</span>
-            <input v-model="searchText" type="text" placeholder="Tim ghi chu, so tien..." />
+            <input v-model="searchText" type="text" placeholder="Search notes or amounts..." />
           </label>
-          <RouterLink class="notify-btn" to="/login" aria-label="Tai khoan">◎</RouterLink>
+          <RouterLink class="notify-btn" to="/login" aria-label="Account">◎</RouterLink>
         </div>
       </header>
 
@@ -50,13 +50,13 @@
     <header class="marketing-header">
       <RouterLink to="/" class="logo-link">FinTrack</RouterLink>
       <nav class="marketing-nav">
-        <RouterLink to="/">Trang chu</RouterLink>
-        <RouterLink to="/features">Tinh nang</RouterLink>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/features">Features</RouterLink>
         <RouterLink to="/blog">Blog</RouterLink>
       </nav>
       <div class="marketing-actions">
-        <RouterLink to="/login" class="ghost-link">Dang nhap</RouterLink>
-        <RouterLink to="/login" class="cta-link">Dung thu ngay</RouterLink>
+        <RouterLink to="/login" class="ghost-link">Log in</RouterLink>
+        <RouterLink to="/login" class="cta-link">Try for free</RouterLink>
       </div>
     </header>
 
@@ -68,26 +68,26 @@
       <section class="footer-grid">
         <div>
           <h4>FinTrack</h4>
-          <p>Nen tang quan ly tai chinh giup ban kiem soat dong tien va dat muc tieu tiet kiem.</p>
+          <p>A finance platform that helps you control cash flow and reach savings goals.</p>
         </div>
         <div>
-          <h5>San pham</h5>
-          <a href="#">Tinh nang</a>
-          <a href="#">Goi Premium</a>
+          <h5>Product</h5>
+          <a href="#">Features</a>
+          <a href="#">Premium Plan</a>
           <a href="#">API Developer</a>
         </div>
         <div>
-          <h5>Cong ty</h5>
-          <a href="#">Ve chung toi</a>
-          <a href="#">Tuyen dung</a>
-          <a href="#">Lien he</a>
+          <h5>Company</h5>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
         </div>
         <div>
-          <h5>Dang ky nhan tin</h5>
-          <p>Nhan meo tai chinh hang tuan.</p>
+          <h5>Newsletter</h5>
+          <p>Get weekly finance tips.</p>
           <div class="footer-subscribe">
-            <input type="email" placeholder="Email cua ban..." />
-            <button type="button">Gui</button>
+            <input type="email" placeholder="Your email..." />
+            <button type="button">Send</button>
           </div>
         </div>
       </section>
@@ -107,10 +107,10 @@ const footerYear = new Date().getFullYear();
 const isAppLayout = computed(() => route.meta.layout === 'app');
 const isAuthLayout = computed(() => route.meta.layout === 'auth');
 
-const pageTitle = computed(() => route.meta.title || 'Xin chao, ban');
+const pageTitle = computed(() => route.meta.title || 'Welcome back');
 
 const todayText = computed(() =>
-  new Intl.DateTimeFormat('vi-VN', {
+  new Intl.DateTimeFormat('en-US', {
     weekday: 'long',
     day: '2-digit',
     month: '2-digit',
